@@ -1,0 +1,24 @@
+<div>
+    <h2>¡Mirame, Aqui Estoy!</h2>
+
+    @if (loading) {
+        <div>Cargando Usuario...</div>  
+    }
+    
+    @if(error) {
+        <div>Error al cargar el usuario: {{error}}</div>
+    }
+
+    @if (usuario !== null) { 
+        <div>
+            <app-usuario-card [usuario]="usuario" [repositorios]="repositorios">
+
+            </app-usuario-card>
+        </div>
+    }
+</div>
+
+<div>
+    <h2>Juego Propio</h2>
+    <p>Aqui va mi breve descripción del juego propio</p>
+</div>

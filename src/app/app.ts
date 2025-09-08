@@ -1,12 +1,15 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
+// importacion de componentes 
+import { Nav } from './components/nav/nav';
+
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, Nav],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('MaleArcade-SalaDeJuegos-CortesMalena');
+  protected readonly title = signal('MaleArcade'); 
 }
