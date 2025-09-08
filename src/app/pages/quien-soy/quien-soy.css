@@ -1,0 +1,29 @@
+/*Informacion del perfil*/
+.container-perfil {
+    display: flex;
+    flex-direction: column;
+    padding: 3rem;
+    align-items: center;
+}
+
+.container-card {
+    display: flex;
+    justify-content: center;
+}
+
+h2 {
+    font-family: "Monoton", sans-serif;
+    font-weight: 400;
+    font-style: oblique;
+    color:#d34a24;
+    text-shadow: 2px 2px 2px #000000 ;
+}
+
+/*Informacion del juego*/
+.container-juego {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4rem;
+    background-color: rgb(0, 0, 0, 0.2);
+}

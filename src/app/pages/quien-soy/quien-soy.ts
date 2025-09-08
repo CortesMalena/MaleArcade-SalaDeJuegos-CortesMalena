@@ -11,6 +11,7 @@ import { UsuarioCard } from '../../components/usuario-card/usuario-card';
 
 export class QuienSoy implements OnInit {
 
+  // Establezco variables 
   usuario: Usuario | null = null;
   repositorios: number= 0;
   loading: boolean = true;
@@ -40,7 +41,7 @@ export class QuienSoy implements OnInit {
       // manejo errores
       error: (error) => {
         console.error('Error cargando al usuario: ', error);
-        this.error = "Error al cargar usuario";
+        this.error = "Error al obtener los datos del usuario";
         this.loading = false;
         this.cdr.detectChanges();
       }

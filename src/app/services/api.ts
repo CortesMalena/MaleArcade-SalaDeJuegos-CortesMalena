@@ -8,6 +8,7 @@ export interface Usuario {
   avatar_url: string;
   repos_url: string;
   followers:string;
+  following:string;
 }
 
 @Injectable({
@@ -15,13 +16,14 @@ export interface Usuario {
 })
 
 export class Api implements OnInit {
+  // Signal reactivo que almacena la información de mi usuario de gitHub
   private usuario = signal<Usuario | null>(null);
 
   private apiUrl = 'https://api.github.com/users/CortesMalena';
 
   constructor (private http: HttpClient) {};
 
-
+  // Inicializo el componente con los datos 
   ngOnInit(): void {
     this.http.get<Usuario>(`${this.apiUrl}`).subscribe({
       next: (data) => {
@@ -36,9 +38,9 @@ export class Api implements OnInit {
 
   // Realizo el uso de forkJoin, operador que me permite ejecutar peticiones en paralelo
   getUsuarioYRepos(): Observable<{ usuario: Usuario; repos: any[] }> {
-   return forkJoin({
+   return forkJoin({ // obtengo usuario y repositorios al mismo tiempo
     usuario: this.http.get<Usuario>(this.apiUrl),
-    repos: this.http.get<any[]>(`${this.apiUrl}/repos`) // para ver la cantidad de repositorios
+    repos: this.http.get<any[]>(`${this.apiUrl}/repos`) 
     });
   }
 }

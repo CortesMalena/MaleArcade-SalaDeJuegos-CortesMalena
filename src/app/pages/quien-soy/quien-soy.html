@@ -1,16 +1,17 @@
-<div>
-    <h2>¡Mirame, Aqui Estoy!</h2>
+<!--Contenedor de mi perfil-->
+<div class="container-perfil">
+    <h2>MI PERFIL</h2>
 
     @if (loading) {
-        <div>Cargando Usuario...</div>  
+        <div><p>Cargando Usuario...</p></div>  
     }
     
     @if(error) {
-        <div>Error al cargar el usuario: {{error}}</div>
+        <div><p>Error al cargar el usuario: {{error}}</p></div>
     }
 
     @if (usuario !== null) { 
-        <div>
+        <div class="container-card">
             <app-usuario-card [usuario]="usuario" [repositorios]="repositorios">
 
             </app-usuario-card>
@@ -18,7 +19,10 @@
     }
 </div>
 
-<div>
-    <h2>Juego Propio</h2>
-    <p>Aqui va mi breve descripción del juego propio</p>
+<!--Contenedor de la explicación del juego-->
+<div class="container-juego">
+    <h2>Juego Propio <img src="assets/icons/joystick.png" alt=""></h2>
+    <h3>Busqueda del tesoro</h3>
+    <p>El juego se basa en la busqueda de un tesoro, el usuario podrá moverse de izquierda a derecha y de arriba a abajo para poder encontrarlo y asi ganar el juego.
+    Durante el camino se presentarán dificultades que se tendrán que evitar (bombas), de lo contrario el usuario perdera al agotar sus 3 vidas.</p>
 </div>

@@ -8,7 +8,7 @@ import { Usuario } from '../../services/api';
   styleUrl: './usuario-card.css'
 })
 export class UsuarioCard {
-  // renderizo de forma reactiva
+  // renderizo de forma reactiva mi usuario y mis repositorios
   usuario = input.required<Usuario>();
   repositorios = input.required<number>();
 

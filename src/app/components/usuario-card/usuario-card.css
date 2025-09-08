@@ -1,0 +1,127 @@
+/*Datos del usuario*/
+
+/*Card*/
+.card-usuario {
+    border: 2px solid #d34a24;
+    background-color: #f8bf66;
+    display: flex;
+
+    padding: 2rem;
+}
+
+/*Texto de la derecha (nombre y demás datos)*/
+.div-texto {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+/*Nombre*/
+h3 {
+    font-family: "Bungee", sans-serif;
+    color: #d34a24;
+    text-shadow: 2px 2px 2px #000000 ;
+}
+
+/*animacion de hover en los demás datos*/
+.usuario-data:hover {
+   transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(255, 0, 0, 0.4); /* efecto neón */
+}
+
+/*div contenedor que contiene los demás datos*/
+.usuario-informacion {
+    padding: 2rem;
+    font-family: "Bungee", sans-serif;
+    color: #d34a24;
+    text-shadow: 0px 0px 10px #000000 ;
+}
+
+/*divs singulares con la información adicional */
+.usuario-data {
+    padding: 1.5rem;
+    margin: 1rem;
+    color: #f4a82e ;
+    border: 2px solid #d34a24;
+    background-color: #d34a24;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 5rem;
+}
+
+/*animacion hover sobre la imagen*/
+img:hover {
+   transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(255, 0, 0, 0.4); /* efecto neón */
+}
+
+/* MEDIA QUERY */
+
+/*Media query 1000px*/
+@media (max-width: 1000px) {
+    .card-usuario {
+        width: 50rem;
+        padding: 1rem;
+        justify-content: center;
+        align-items: center;
+    }
+    img {
+        width: 20rem;
+    }
+    .usuario-data {
+        width: 20rem;
+    }
+}
+
+/*Media query 800px*/
+@media (max-width: 800px) {
+    .card-usuario {
+        width: 40rem;
+        padding: 1rem;
+        justify-content: center;
+        align-items: center;
+    }
+    img {
+        width: 15rem;
+    }
+    .usuario-data {
+        width: 15rem;
+    }
+}
+
+/*Media query 700px*/
+@media (max-width: 700px) {
+    .card-usuario {
+        width: 30rem;
+        padding: 1rem;
+        justify-content: center;
+        align-items: center;
+    }
+    img {
+        width: 12rem;
+    }
+    .usuario-data {
+        width: 10rem;
+    }
+}
+
+
+/*Media query 500px*/
+@media (max-width: 500px) {
+    .card-usuario {
+        flex-direction: column;
+        width: 15rem;
+        padding: 1rem;
+        justify-content: center;
+        align-items: center;
+    }
+    img {
+        width: 5rem;
+    }
+    .usuario-data {
+        width: 5rem;
+    }
+}

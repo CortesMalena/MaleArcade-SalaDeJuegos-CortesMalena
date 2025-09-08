@@ -1,0 +1,31 @@
+
+/*Colores y fonts*/
+.navbarColor {
+    background-color: #f9a961;
+}
+
+.nav-link {
+    color: #992800;
+}
+
+.a-logo {
+    color: #992800;
+    font-family: "Monoton", sans-serif;
+    font-weight: bold;
+}
+
+.btn-color-1 {
+    color: #992800;
+    border-color: #992800;
+}
+
+.btn-color-1:hover {
+  background-color:  #992800; 
+  color: #ffffff;            
+  border-color: white;      
+}
+
+.btn-color-2 {
+    background-color: #992800;
+    border-color: #ffffff;
+}
