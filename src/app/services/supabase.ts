@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-//import { environment } from '../../environments/environment';
+import { environment } from '../../environments/environment';
 import { createClient, SupabaseClient, Session, User, AuthChangeEvent } from '@supabase/supabase-js';
 
 
@@ -13,8 +13,7 @@ export class Supabase {
   
   constructor() {
     // Creo un cliente con la clave y la url
-    this.supabase = createClient(process.env['SUPABASE_URL']! , process.env['SUPABASE_KEY']! ); // vercel
-    //this.supabase = createClient( environment.supabaseUrl, environment.supabaseKey); -> local
+    this.supabase = createClient( environment.supabaseUrl, environment.supabaseKey); 
   }
 
   // Función asíncrona del logeo de usuario

@@ -34,10 +34,6 @@ export class Bienvenida implements OnInit {
       if (session?.user) {
         this.usuario = session.user;
         this.cdr.detectChanges();
-      } else {
-        this.usuario = null;
-        this.usuario_nombre = "";
-        this.cdr.detectChanges();
       }
     })
   }

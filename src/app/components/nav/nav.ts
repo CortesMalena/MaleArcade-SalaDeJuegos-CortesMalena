@@ -23,7 +23,7 @@ export class Nav implements OnInit {
 
     this.supabase.onAuthStateChange((_event, session) => {
       if (session?.user) {
-        this.usuario = session.user || null;
+        this.usuario = session.user;
         this.cdr.detectChanges();
       }
     })
