@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../../environments/envitonment';
+import { environment } from '../../environments/environment';
 import { createClient, SupabaseClient, Session, User, AuthChangeEvent } from '@supabase/supabase-js';
 
 
