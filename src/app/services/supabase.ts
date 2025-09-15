@@ -13,7 +13,7 @@ export class Supabase {
   
   constructor() {
     // Creo un cliente con la clave y la url
-    this.supabase = createClient(environment.supabaseUrl, environment.supabaseKey); 
+    this.supabase = createClient(  process.env['SUPABASE_URL']  ||environment.supabaseUrl, process.env['SUPABASE_KEY'] || environment.supabaseKey); 
   }
 
   // Función asíncrona del logeo de usuario
