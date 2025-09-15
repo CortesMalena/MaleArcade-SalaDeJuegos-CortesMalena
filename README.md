@@ -65,6 +65,10 @@ MaleArcade-SalaDeJuegos-CortesMalena/
 │   ├── app/
 │   │   ├── components/
 │   │   │   ├── nav/
+│   │   │   ├── ahorcado/
+│   │   │   ├── buscar-el-tesoro/
+│   │   │   ├── mayor-o-menor/
+│   │   │   ├── preguntados/
 │   │   │   └── usuario-card/
 │   │   ├── pages/
 │   │   │   ├── bienvenida/
@@ -81,7 +85,7 @@ MaleArcade-SalaDeJuegos-CortesMalena/
 │   │   ├── icons/
 │   │   └── img/
 │   ├── environments/
-│   │   └── supabase.config.ts
+│   │   └── environments.ts
 │   └── index.html
 ├── angular.json
 ├── package.json
@@ -91,7 +95,7 @@ MaleArcade-SalaDeJuegos-CortesMalena/
 # Spints :calendar:
 Aquí se podran visualizar los spints realizados:
 
-## Sprint #1 v1.0.0 :round_pushpin:
+## Sprint #1 v1.0.0 
 - Creación del proyecto. :heavy_check_mark:
 - Deploy en hosting (vercel, firebase, etc.). :heavy_check_mark:
 - Componentes creados: :heavy_check_mark:
@@ -107,3 +111,27 @@ Aquí se podran visualizar los spints realizados:
 - Implementar un favicon propio. :heavy_check_mark:
 - Agregar estilado general, inspirado en lo retro :heavy_check_mark:
 
+## Sprint #2 v2.0.0 :round_pushpin:
+### Funcionalidad - Componente Bienvenida / Home:
+- Tiene que ser el componente principal, desde este se podrán acceder a los diferentes
+juegos y listados. :heavy_check_mark:
+- Si el usuario NO está logueado, mostrar los botones de registro e inicio de sesión. :heavy_check_mark:
+- Si el usuario está logueado, mostrar su nombre de usuario y un botón para cerrar sesión. :heavy_check_mark:
+- Hasta no ver el tema “Guardias de ruta” o “Guards”, no es necesario bloquear los botones de los juegos, pero si ocultar los botones que no deberían verse. :heavy_check_mark:
+
+### Funcionalidad - Inicio de sesión:
+- Tiene que validar al usuario frente a supabase / firebase utilizando correo y contraseña. :heavy_check_mark:
+- En caso de que el inicio de sesión sea exitoso, navegar automáticamente al Home. :heavy_check_mark:
+- En caso de que el inicio de sesión no sea exitoso, mostrar un mensaje con el respectivo
+error. :heavy_check_mark:
+- La página de login debe contar con tres botones de inicio de sesión rápido, que le permitan a quién esté probando la aplicación ingresar automáticamente con usuarios
+previamente registrados para que las pruebas sean más ágiles. :heavy_check_mark:
+
+### Funcionalidad: Registro.
+- Cuenta con un formulario que permite registrar a un usuario. Crea su cuenta en el
+sistema de autenticación y guarda sus datos en la base de datos. Nota: la contraseña no
+se guarda. :heavy_check_mark:
+- El usuario debe ingresar su correo, nombre, apellido, edad y contraseña. :heavy_check_mark:
+- Una vez cargados todos los datos, y el usuario se registra correctamente, se debe iniciar
+sesión con ese usuario y navegar automáticamente al Home. :heavy_check_mark:
+- Emitir mensaje si el usuario ya se encuentra registrado. :heavy_check_mark:

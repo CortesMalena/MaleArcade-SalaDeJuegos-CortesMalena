@@ -29,3 +29,12 @@
     background-color: #992800;
     border-color: #ffffff;
 }
+
+.navbar-btn {
+    min-width: 220px;
+}
+
+span {
+    margin-top: 7px;
+    color: #ffffff;
+}

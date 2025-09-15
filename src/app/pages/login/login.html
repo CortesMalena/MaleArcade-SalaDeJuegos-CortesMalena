@@ -1,1 +1,69 @@
-<p>¡Este es el componente login!</p>
+
+<div class="container mt-5 mb-4">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card p-4">
+        <h3 class="text-center mb-4">Inicio de sesión</h3>
+        <form (ngSubmit)="realizarInicioDeSesion()" [formGroup]="inicioForm">
+
+          <!-- Email -->
+          <div class="mb-3">
+            <label for="email" class="form-label">Correo electrónico</label>
+            <input type="email" formControlName="email" id="email" name="email" class="form-control" placeholder="ejemplo@gmail.com" autocomplete="off" required>
+          </div>
+
+          <!-- Contraseña -->
+          <div class="mb-3">
+            <label for="password" class="form-label">Contraseña</label>
+            <input type="password" id="password" name="password" formControlName="password" class="form-control" placeholder="••••••••" required>
+          </div>
+
+          <!-- Botón -->
+          <button type="submit" class="btn w-100" [disabled]="!inicioForm.valid">
+            Iniciar sesión
+          </button>
+
+        </form>
+
+        <!-- Mensajes -->
+        <div>
+          @if (cargando) {
+          <p>  Cargando, por favor espere... </p>
+        } 
+        </div>
+
+        <div>
+          @if (mensajeDeError.length > 0) {
+          <p> {{mensajeDeError}} </p>
+          }
+        </div>
+        <p class="text-center mt-4">¿No tienes cuenta? <a class="a-registro" routerLink="/registro"> Registrate </a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="contenido-usuariosPrecargados">
+  <a (click)="toggleUsuarios($event)">
+  <img src="../../../assets/img/img-usuarios.png" alt="img-usuarios" class="img-usuarios">
+  </a>
+
+  @if (mostrarUsuarios()) {
+    <div class="lista-usuarios">
+      <a class="inicio-rapido" (click)='llamarALogin("malenanahir16@gmail.com", "123456")'>
+        <img class="inicio-rapido-img" src="../../../assets/img/usuario1.png" alt="img-usuarios">
+        <span>Malena</span>
+      </a>
+      <a class="inicio-rapido" (click)='llamarALogin("isalourdescortes@gmail.com", "abcdefg")'>
+        <img class="inicio-rapido-img" src="../../../assets/img/usuario2.png" alt="img-usuarios">
+        <span>Isabella</span>
+      </a>
+      <a class="inicio-rapido" (click)='llamarALogin("malenanahircortes@gmail.com", "123456")'>
+        <img class="inicio-rapido-img" src="../../../assets/img/usuario3.png" alt="img-usuarios">
+        <span>Nahir</span>
+      </a>
+    </div>
+  }
+</div>
+
+

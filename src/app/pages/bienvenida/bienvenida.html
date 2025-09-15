@@ -1,1 +1,78 @@
-<p>¡Este es el componente bienvenida!</p>
+<div class="container-fluid p-0 color-fondo">
+  <div class="vh-100 vw-100 p-5  contenedor-bienvenida-color">
+    <h1 class="mb-3">¡Esto es MaleArcade!</h1>
+
+    <div class="text-white rounded p-3 mb-3 color">
+      @if (usuario_nombre) {
+        <p class="mensaje-bienvenida">¡Bienvenid@  {{usuario_nombre}}!👋 </p>
+      } @else {
+        <p class="mensaje-bienvenida">¡Hola Invitado! Inicia sesión por favor para disfrutar de nuestros juegos.</p>
+      }
+    </div>
+
+    <hr class="my-4" />
+  
+
+  @if (!usuario) {
+    <p>Inicia sesión para poder visualizar nuestros juegos</p>
+  } @else {
+
+  <div class="container mt-4">
+
+  <!--Formato filas y columnas-->
+  <div class="row g-4">
+
+    <!-- Ahorcado -->
+    <div class="col-md-3">
+      <div class="card h-100">
+        <img src="assets/img/ahorcado.png" class="card-img-top" alt="ahorcado">
+        <div class="card-body">
+          <h3 class="card-title">Ahorcado</h3>
+          <p class="card-text">Juego de adivinanzas de palabras, donde tendrás que acertar letra por letra.</p>
+          <button class="btn w-100 color" (click)="irAlJuego('ahorcado')">Jugar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mayor o menor -->
+    <div class="col-md-3">
+      <div class="card h-100">
+        <img src="assets/img/mayorOMenor.png" class="card-img-top" alt="Mayor o menor">
+        <div class="card-body">
+          <h3 class="card-title">Mayor o menor</h3>
+          <p class="card-text">Juego de adivinanzas de numeros, donde tendrás que decifrar si el numero de la siguiente carta es mayor o menor</p>
+          <button class="btn w-100 color" (click)="irAlJuego('mayorOMenor')">Jugar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Juego 3 -->
+    <div class="col-md-3">
+      <div class="card h-100">
+        <img src="assets/img/preguntados.png" class="card-img-top" alt="Preguntados">
+        <div class="card-body">
+          <h3 class="card-title">Preguntados</h3>
+          <p class="card-text">Juego de preguntas y respuestas ¡Acierta la mayor cantidad posible! </p>
+          <button class="btn w-100 color" (click)="irAlJuego('preguntados')">Jugar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Juego 4 -->
+    <div class="col-md-3">
+        <div class="card h-100">
+          <img src="assets/img/juego4.png" class="card-img-top" alt="Buscar el tesoro">
+            <div class="card-body">
+              <h3 class="card-title">Buscar el tesoro</h3>
+              <p class="card-text">¡Juego especial! ve su descripción en "Quien soy"</p>
+              <button class="btn w-100 color" (click)="irAlJuego('buscarElTesoro')">Jugar</button>
+            </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+
+}
+  </div>
+</div>

@@ -1,0 +1,22 @@
+.btn {
+    background-color: #992800;
+    color: #fff;
+}
+
+.card {
+    background-color: #e7dfd8;
+}
+
+a {
+    color: #992800;
+    text-decoration: none;
+}
+
+a:hover {
+  color: #ff6b45; 
+  text-decoration: underline; 
+}
+
+p {
+    color: #000000D9;
+}

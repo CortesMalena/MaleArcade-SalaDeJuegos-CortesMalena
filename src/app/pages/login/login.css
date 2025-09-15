@@ -1,0 +1,62 @@
+.btn {
+    background-color: #992800;
+    color: #fff;
+}
+
+.card {
+    background-color: #e7dfd8;
+}
+
+a {
+    color: #992800;
+    text-decoration: none;
+}
+
+.a-registro:hover {
+  color: #ff6b45; 
+  text-decoration: underline; 
+}
+
+p {
+    color: #000000D9;
+}
+
+.contenido-usuariosPrecargados {
+    position: relative;
+}
+
+.img-usuarios {
+    width: 150px;
+    height: 150px;
+    position: relative;
+}
+
+.contenido-usuariosPrecargados {
+  display: flex;
+  justify-content: flex-end;
+}
+
+
+.lista-usuarios {
+  position: absolute;
+  display: flex;
+  justify-content: flex-end;
+  bottom: 100%; /* aparece debajo */
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  background: #e7dfd8; /* blanco para contraste */
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  color: #000; /* texto negro */
+  z-index: 1000; /* por encima de todo */
+  margin-right: 20px;
+  padding-right: 30px;
+}
+
+.inicio-rapido-img {
+    width: 100px;
+    height: 100px;
+}

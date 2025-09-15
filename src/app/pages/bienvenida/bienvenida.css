@@ -1,0 +1,27 @@
+.color {
+    background-color: #992800;
+}
+
+.contenedor-bienvenida-color{
+    background-color: #f3af73; 
+
+}
+
+.mensaje-bienvenida {
+    margin: 0 auto;
+}
+
+p {
+    color: black;
+}
+
+.card {
+    background-color: #f9a961;
+    border: 2px solid #d34a24;
+}
+
+.card-title {
+    font-family: "Bungee", sans-serif;
+    color: #d34a24;
+    text-shadow: 2px 2px 2px black;
+}

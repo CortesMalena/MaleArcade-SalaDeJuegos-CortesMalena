@@ -15,16 +15,16 @@ export interface Usuario {
   providedIn: 'root'
 })
 
-export class Api implements OnInit {
+export class Api {
   // Signal reactivo que almacena la información de mi usuario de gitHub
-  private usuario = signal<Usuario | null>(null);
+  //private usuario = signal<Usuario | null>(null);
 
   private apiUrl = 'https://api.github.com/users/CortesMalena';
 
   constructor (private http: HttpClient) {};
 
   // Inicializo el componente con los datos 
-  ngOnInit(): void {
+  /*ngOnInit(): void {
     this.http.get<Usuario>(`${this.apiUrl}`).subscribe({
       next: (data) => {
         this.usuario.set(data);
@@ -34,7 +34,7 @@ export class Api implements OnInit {
       }
       
     })
-  }
+  }*/
 
   // Realizo el uso de forkJoin, operador que me permite ejecutar peticiones en paralelo
   getUsuarioYRepos(): Observable<{ usuario: Usuario; repos: any[] }> {

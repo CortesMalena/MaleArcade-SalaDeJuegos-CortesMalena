@@ -1,1 +1,68 @@
-<p>¡Este es el componente registro!</p>
+
+<div class="container mt-5 mb-4">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card p-4">
+        <h3 class="text-center mb-4">Registro</h3>
+        <form (ngSubmit)="realizarRegistro()" [formGroup]="registerForm">
+
+          <!-- Nombre -->
+          <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" id="nombre" name="nombre" formControlName="nombre" class="form-control" placeholder="Escribe tu nombre" autocomplete="off" required>
+          </div>
+
+          <!-- Apellido -->
+          <div class="mb-3">
+            <label for="apellido" class="form-label">Apellido</label>
+            <input type="text" id="apellido" formControlName="apellido" name="apellido"  class="form-control" placeholder="Escribe tu apellido" autocomplete="off" required>
+          </div>
+
+          <!-- Email -->
+          <div class="mb-3">
+            <label for="email" class="form-label">Correo electrónico</label>
+            <input type="email" formControlName="email" id="email" name="email" class="form-control" placeholder="ejemplo@gmail.com" autocomplete="off" required>
+          </div>
+
+          <!-- Contraseña -->
+          <div class="mb-3">
+            <label for="password" class="form-label">Contraseña</label>
+            <input type="password" id="password" name="password" formControlName="password" class="form-control" placeholder="••••••••" required>
+          </div>
+
+          <!-- Edad -->
+          <div class="mb-3">
+            <label for="edad" class="form-label">Edad</label>
+            <input type="number" id="edad" name="edad" formControlName="edad" class="form-control" autocomplete="off" required>
+          </div>
+
+          <!-- Botón -->
+          <button type="submit" class="btn w-100" [disabled]="!registerForm.valid">
+            Registrarse
+          </button>
+
+        </form>
+
+        <!-- Mensajes -->
+        <div>
+          @if (cargando) {
+          <p>  Cargando, por favor espere... </p>
+        } 
+        </div>
+
+        <div>
+          @if (mensajeDeExito.length > 0) {
+          <p>  {{mensajeDeExito }}</p>
+        } 
+        </div>
+
+        <div>
+          @if (mensajeDeError.length > 0) {
+          <p> {{mensajeDeError}} </p>
+          }
+        </div>
+        <p class="text-center mt-4">¿Ya tienes cuenta? <a routerLink="/login"> inicia sesión </a></p>
+      </div>
+    </div>
+  </div>
+</div>
