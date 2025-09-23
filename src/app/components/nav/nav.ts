@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef} from '@angular/core';
+import { Component, OnInit, signal} from '@angular/core';
 import { RouterLink, Router } from '@angular/router';
 
 // Relacionado a los datos de los usuarios
@@ -12,28 +12,25 @@ import { Supabase } from '../../services/supabase';
   styleUrl: './nav.css'
 })
 export class Nav implements OnInit {
-  usuario: User | null = null; 
+  usuario = signal<User | null>(null); 
 
-  constructor(private router: Router, private supabase: Supabase, private cdr: ChangeDetectorRef) {};
+  constructor(private router: Router, private supabase: Supabase) {};
 
   // Inicializo el componente verificando si hay o no una session
   async ngOnInit(): Promise<void> {
-    this.usuario = await this.supabase.getUser(); 
-    this.cdr.detectChanges();
+    this.usuario.set(await this.supabase.getUser()); 
 
     this.supabase.onAuthStateChange((_event, session) => {
       if (session?.user) {
-        this.usuario = session.user;
-        this.cdr.detectChanges();
+        this.usuario.set(session.user);
       }
     })
   }
 
   async cerrarSesion() {
-    this.usuario = null;
-    this.cdr.detectChanges();
+    this.usuario.set(null);
     await this.supabase.logout();
-    this.router.navigate(['/']);
+    this.router.navigate(['/login']);
   }
 
 }

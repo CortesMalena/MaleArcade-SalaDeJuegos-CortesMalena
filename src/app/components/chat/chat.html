@@ -1,0 +1,33 @@
+<div class="chat-container">
+  <!-- Lista de mensajes -->
+  <div class="mensajes">
+    
+    <div>
+        @for (mensaje of mensajes(); track $index) {
+
+            @if ( mensaje.user_id === usuario()?.id) {
+              <div class="text-center user-autor"> 
+                <span class="autor"> {{ mensaje.nombre}} </span>
+                <p class="p-0 m-0 texto"> {{mensaje.mensaje}} </p>
+                <span class="tiempo"> {{mensaje.created_at | date:'dd/MM HH:mm' }} </span>
+              </div>
+            } @else { 
+              <div class="text-center user-externo">
+                <span class="usuario-externo"> {{mensaje.nombre}} </span>
+                <p class="p-0 m-0 texto-externo"> {{mensaje.mensaje}} </p>
+                <span class="tiempo-externo"> {{mensaje.created_at | date:'dd/MM HH:mm'}} </span>
+              </div>
+            }
+        }
+        
+
+    </div>
+
+  <!-- Input para enviar -->
+  <div class="input-area">
+    
+    <input class="rounded-pill w-100" type="text"  [value]="nuevoMensaje()" 
+    (input)="nuevoMensaje.set($any($event.target).value)" placeholder="Escribe un mensaje..." />
+    <button class="btn btn-danger rounded-pill w-20" (click)="enviarMensaje()">Enviar</button>
+  </div>
+</div>

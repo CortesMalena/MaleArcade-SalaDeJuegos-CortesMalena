@@ -27,14 +27,14 @@
 
         <!-- Mensajes -->
         <div>
-          @if (cargando) {
-          <p>  Cargando, por favor espere... </p>
+          @if (cargando()) {
+          <p class="fw-bold">  Cargando, por favor espere... </p>
         } 
         </div>
 
         <div>
-          @if (mensajeDeError.length > 0) {
-          <p> {{mensajeDeError}} </p>
+          @if (mensajeDeError()) {
+          <p class="text-danger fw-bold"> {{mensajeDeError()}} </p>
           }
         </div>
         <p class="text-center mt-4">¿No tienes cuenta? <a class="a-registro" routerLink="/registro"> Registrate </a></p>

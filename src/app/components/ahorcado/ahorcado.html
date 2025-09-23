@@ -1,1 +1,59 @@
-<p>ahorcado works!</p>
+
+<div class="contendor-ahorcado">
+
+    
+    <!--Mensaje de carga-->
+    <div>
+        @if (loading()) {
+            Cargando la palabra....
+        } 
+    </div>
+    
+    <!--Si deja de cargar-->
+  
+    @if (!loading() ) {
+        <div>
+        <!--Pista-->
+        <p><strong> La pista se desbloqueara al quedar una vida: </strong></p>
+
+        @if (vidas() === 1) {
+            <p><strong>{{pista()}}</strong></p>
+        }
+        </div>
+        
+ 
+        <!--Estados del juego -->
+        <div class="estado-juego">
+            <p>Vidas: {{ vidas() }}</p>
+            <p>Tiempo: {{ tiempo() }} / {{ limite() }} seg</p>
+            <p>Puntos: {{ puntos() }}, se descontaran al perder vidas  </p>
+        </div>
+
+        <!--Palabra a adivinar-->
+        <div class="m-4">
+            @for (letraAdivinanza of palabraMostrada(); track $index) {
+                <span class="palabra-mostrada">{{ letraAdivinanza }} </span>
+            }
+        </div>
+    }  
+    
+    <!--Abecedario-->
+    <div class="d-flex flex-wrap gap-2 justify-content-center">
+        @for (letra of abecedario; track letra) {
+            <button class="btn rounded-circle letra-btn"
+            (click)="seleccionarLetra(letra)"
+            [disabled]="letrasSeleccionadas().includes(letra)">
+            {{letra}} 
+            </button>
+        }
+    </div>
+
+    <!--Letras que fueron seleccionadas-->
+    <div class="m-4">
+        <p> Letras seleccionadas: </p>
+        @for (letraSeleccionadas of letrasSeleccionadas(); track $index) {
+            <span> {{ letraSeleccionadas }} </span>
+        }
+    </div>
+
+</div>

@@ -1,0 +1,9 @@
+.color {
+    background-color: #f9a961;
+
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.3); /* sombra arriba */
+}
+
+p {
+    color: #992800;
+}

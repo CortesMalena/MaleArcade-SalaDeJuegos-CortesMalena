@@ -1,0 +1,56 @@
+.autor {
+    color: #992800;
+    font-family: "Bungee", sans-serif;
+    font-style: italic;
+}
+
+.usuario-externo {
+    color: #d34a24;
+    font-family: "Bungee", sans-serif;
+    font-style: italic;
+}
+
+.tiempo {
+    font-size: 0.8rem;
+    font-style: italic;
+}
+
+.mensajes {
+    display: flex;
+    flex-direction: column; 
+    gap: 0.5rem;         
+    padding: 1rem;
+    margin: auto;           
+}
+
+.user-autor {
+    display: flex;
+    flex-direction: column;
+    background-color: #d34a24;
+    border: 2px solid #f9a961;  
+    color: white;                     
+    padding: 0.6rem 1rem;            
+    border-radius: 1rem;             
+    max-width: 60%;                   
+    margin: 0.5rem 0;                 
+    margin-left: auto;      
+    word-wrap: break-word;            
+}
+
+.user-externo {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid #d34a24;
+    background-color: #f9a961;
+    color: white;
+    padding: 0.6rem 1rem;
+    border-radius: 1rem;
+    max-width: 60%;
+    margin: 0.5rem 0;
+    margin-right: auto;     
+    word-wrap: break-word;
+}
+
+.input-area {
+    display: flex;
+}

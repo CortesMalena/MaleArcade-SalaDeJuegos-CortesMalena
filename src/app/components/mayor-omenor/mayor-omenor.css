@@ -1,0 +1,80 @@
+.juego-container {
+  margin: 5rem;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+.botones-prediccion button {
+  margin: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
+/*Estilizo carta*/
+.nombre-carta {
+  margin-top: 1rem;
+  color: black;
+  text-shadow: 0.2rem 0rem 0rem #ffa500;
+  font-family: "Bungee", sans-serif;
+  font-style: italic;
+}
+
+.cartas-lista {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/*Ajusto imagenes*/
+.carta-actual img.carta-img,
+.carta-acertada img.carta-img-pequena {
+  width: 200px;        
+  height: 280px;        
+  object-fit: cover; 
+  border: 2px solid #ff9500;
+  border-radius: 8px;
+  box-shadow: 0 0 10px #ff7f00, 0 0 15px #ff4500;
+
+}
+
+/* efecto animado al pasar el mouse */
+.carta-actual img.carta-img:hover,
+img.carta-img-pequena:hover {
+  transform: scale(1.05); 
+}
+
+/*Barra de progreso*/
+.barra {
+  height: 25px;
+  border: 3px solid #ff7f00; 
+  border-radius: 12px;
+  background-color: #222; 
+  overflow: hidden;
+
+}
+
+.barra .progress-bar {
+  background: #ffa500;
+  box-shadow: 0 0 10px #d34a24 inset, 0 0 15px #ff7f00;
+}
+
+/* Texto */
+.text {
+  font-family: "Bungee", sans-serif;
+  color: #ffa500;
+  font-size: 1rem;
+  text-shadow: 2px 2px 2px black;
+}
+
+h2 {
+  font-family: "Bungee", sans-serif;
+  color: #ffa500;
+  text-shadow: 2px 2px 2px black;
+}
+
+h3 {
+  margin-top: 2rem;
+  font-family: "Bungee", sans-serif;
+  color: #ff7f00;
+  text-shadow: 2px 2px 2px black;
+}

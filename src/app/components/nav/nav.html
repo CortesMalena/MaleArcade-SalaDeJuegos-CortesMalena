@@ -17,23 +17,23 @@
       <!-- Links al medio -->
       <ul class="navbar-nav nav-underline mx-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" routerLink="/bienvenida">Bienvenida</a>
+          <a class="nav-link" routerLink="/">Bienvenida</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/quienSoy">Quién Soy</a>
         </li>
       </ul>
 
-      @if (usuario) {
+      @if (usuario()) {
          <!-- Boton a la derecha (Cierre de sesión) -->
         <div class="d-flex justify-content-between navbar-btn">
-          <span> ¡Hola {{usuario.user_metadata['nombre']}}! </span>
+          <span> ¡Hola {{usuario()!.user_metadata['nombre']}}! </span>
           <button class="btn btn-primary btn-color-2" (click)="cerrarSesion()">Cerrar Sesión</button>
         </div>
       } @else {
         <!-- Botones a la derecha (inicio de sesión y registro) -->
         <div class="d-flex navbar-btn">
-          <button class="btn btn-outline-light me-2 btn-color-1" routerLink="/">Iniciar Sesión</button>
+          <button class="btn btn-outline-light me-2 btn-color-1" routerLink="/login">Iniciar Sesión</button>
           <button class="btn btn-primary btn-color-2" routerLink="/registro">Registrarse</button>
         </div>
       }

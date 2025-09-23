@@ -41,16 +41,15 @@ p {
   position: absolute;
   display: flex;
   justify-content: flex-end;
-  bottom: 100%; /* aparece debajo */
+  bottom: 100%; 
   right: 0;
   display: flex;
   flex-direction: column;
-  gap: 10px;
   padding: 10px;
-  background: #e7dfd8; /* blanco para contraste */
+  background: #e7dfd8; 
   border-radius: 8px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-  color: #000; /* texto negro */
+  color: #000; 
   z-index: 1000; /* por encima de todo */
   margin-right: 20px;
   padding-right: 30px;

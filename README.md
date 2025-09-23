@@ -65,6 +65,8 @@ MaleArcade-SalaDeJuegos-CortesMalena/
 │   ├── app/
 │   │   ├── components/
 │   │   │   ├── nav/
+│   │   │   ├── chat/
+│   │   │   ├── footer/
 │   │   │   ├── ahorcado/
 │   │   │   ├── buscar-el-tesoro/
 │   │   │   ├── mayor-o-menor/
@@ -75,13 +77,19 @@ MaleArcade-SalaDeJuegos-CortesMalena/
 │   │   │   ├── login/
 │   │   │   ├── quien-soy/
 │   │   │   └── registro/
+│   │   ├── interfaces/
+│   │   ├── guards/
+│   │   ├── modals/
 │   │   ├── services/
 │   │   │   ├── api.ts
+│   │   │   ├── chat-service.ts
+│   │   │   ├── juegos-service.ts
 │   │   │   └── supabase.ts
 │   │   ├── app.ts
 │   │   ├── app.routes.ts
 │   │   └── app.config.ts
 │   ├── assets/
+│   │   ├── cartas/
 │   │   ├── icons/
 │   │   └── img/
 │   ├── environments/
@@ -135,3 +143,24 @@ se guarda. :heavy_check_mark:
 - Una vez cargados todos los datos, y el usuario se registra correctamente, se debe iniciar
 sesión con ese usuario y navegar automáticamente al Home. :heavy_check_mark:
 - Emitir mensaje si el usuario ya se encuentra registrado. :heavy_check_mark:
+
+##  Sprint #3 :round_pushpin:
+##  Juego: Ahorcado. :heavy_check_mark:
+○ Deben mostrarse botones que simbolicen a todas las letras del abecedario. La entrada de
+datos es a través de botones, NO el teclado.
+○ Al finalizar la partida, guardar en la base de datos: el usuario que jugó, junto con el
+tiempo de finalización, cantidad de letras selecionadas, etc.
+##  Juego: Mayor o Mentor. :heavy_check_mark:
+○ Se muestra una de una baraja de naipes. Se debe adivinar si la próxima carta va a ser un
+número mayor o un número menor.
+○ Al finalizar la partida, guardar en la base de datos: el usuario que jugó, cantidad de cartas
+acertadas, etc.
+##  Sala de chat: :heavy_check_mark:
+○ Se debe mostrar el chat global para los usuarios logueados.
+○ Se debe permitir enviar un mensaje a la sala de chat.
+○ Al enviar un mensaje, este se guarda en la base de datos con el usuario que lo envió, el
+mensaje y la fecha de envío.
+○ Al guardar el mensaje, se debe mostrar en todos los clientes el nuevo mensaje
+automáticamente (se debe estar suscrito al servicio de base de datos en tiempo real).
+○ Se debe mostrar quién envía cada mensaje y a qué hora. El mensaje propio debe
+diferenciarse del resto.

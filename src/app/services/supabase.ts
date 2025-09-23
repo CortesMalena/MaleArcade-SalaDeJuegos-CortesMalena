@@ -21,7 +21,7 @@ export class Supabase {
 
     const { data, error } = await this.supabase.auth.signInWithPassword({ email, password });
     if (error) {
-      throw new Error('Ocurrió un error al iniciar sesión')
+      throw new Error('Ocurrió un error al iniciar sesión');
     };
 
     const metadata = data.user?.user_metadata;
@@ -30,7 +30,7 @@ export class Supabase {
   }
 
   // Función asíncrona de registro
-  async signUp(email: string, password: string, nombre:string, apellido:string, edad:number) {
+  async signUp(email: string, password: string, nombre:string, apellido:string, edad:number): Promise<{ data: { user: User | null }; error: any }> {
     // Registro en tabla auth.users
     const { data, error} = await this.supabase.auth.signUp({ 
       email, 
@@ -71,6 +71,13 @@ export class Supabase {
   onAuthStateChange(callback: (event: AuthChangeEvent, session: Session | null) => void) {
     return this.supabase.auth.onAuthStateChange(callback);
   }
+
+
+  // para obtener el cliente de supabase y usuarlo en los otros servicios
+  getClient(): SupabaseClient {
+    return this.supabase;
+  }
+
 
 }
 

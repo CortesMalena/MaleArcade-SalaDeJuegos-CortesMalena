@@ -1,4 +1,4 @@
-import { Component, inject, ChangeDetectorRef, signal} from '@angular/core';
+import { Component, inject, signal} from '@angular/core';
 
 // Relacionado a la base de datos 
 import { Supabase } from '../../services/supabase';
@@ -7,25 +7,31 @@ import { Supabase } from '../../services/supabase';
 import { Router, RouterLink } from '@angular/router';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 
+// relacionado a los modales 
+import { SweetAlertService } from '../../modals/sweet-alert';
+
 @Component({
   selector: 'app-login',
   imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './login.html',
   styleUrl: './login.css'
 })
-export class Login {
+export class Login  {
   // mensajes 
-  mensajeDeError = "";
+  mensajeDeError = signal("");
 
   // establezco una carga 
-  cargando = false;
+  cargando = signal(false) ;
 
   //signals 
   mostrarUsuarios = signal(false);
 
   private fb = inject(FormBuilder); 
 
-  constructor (private supabase: Supabase, private router: Router, private cdr: ChangeDetectorRef) {}
+  constructor (
+    private supabase: Supabase, 
+    private router: Router, 
+    private sweetAlert: SweetAlertService,) {}
 
   inicioForm = this.fb.nonNullable.group({
     email: ['', [Validators.required, Validators.email]],
@@ -42,10 +48,11 @@ export class Login {
   // Obtengo los datos del form y los envio al login
   async realizarInicioDeSesion() {
     if (this.inicioForm.invalid) {
-      this.mensajeDeError = "Por favor, complete los datos de la forma correcta"
-      this.cdr.detectChanges();
+      this.mensajeDeError.set( "Por favor, complete los datos de forma correcta.")
       return;
     }
+
+    this.mensajeDeError.set("");
 
     const { email = "",password = "",} = this.inicioForm.value;
 
@@ -54,18 +61,21 @@ export class Login {
   
   // llamo al login de supabase
   async llamarALogin(email: string, password:string) {
-    this.cargando = true;
+    this.cargando.set(true);
+
     try {
       const {user} = await this.supabase.login(email, password);
 
       if (user) {
-        this.cargando = false;
+        this.sweetAlert.crearMensajeExito("Se inició sesión correctamente.");
         this.router.navigate(['/bienvenida'])
       }
       
     } catch (error: any) {
-      this.mensajeDeError = error.message || "Error al Iniciar sesión, verifique sus datos" ;  
-      this.cdr.detectChanges();
+      this.sweetAlert.crearMensajeError(error.message || "Error al Iniciar sesión, verifique sus datos.");
+
+    } finally {
+      this.cargando.set(false);
     }
   }
 }
