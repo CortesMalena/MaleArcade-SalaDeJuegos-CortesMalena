@@ -6,7 +6,7 @@ import { Supabase } from '../../services/supabase';
 
 // Relacionado al formulario y html
 import { Router, RouterLink } from '@angular/router';
-import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, Validators, ValidationErrors, AbstractControl, ValidatorFn } from '@angular/forms';
 
 // relacionado a los modales 
 import { SweetAlertService } from '../../modals/sweet-alert';
@@ -18,7 +18,7 @@ import { SweetAlertService } from '../../modals/sweet-alert';
   templateUrl: './registro.html',
   styleUrls: ['./registro.css']
 })
-export class Registro {
+export class Registro{
   // mensajes 
   mensajeDeError = signal("");
 
@@ -35,16 +35,23 @@ export class Registro {
 
   registerForm = this.fb.nonNullable.group({
     email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required ,Validators.minLength(6)]],
-    nombre: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25), Validators.pattern('^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$')]], // Permite letras (mayúsculas y minúsculas), tildes y espacios.
-    apellido: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25), Validators.pattern('^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$')]], // Rechaza números o caracteres especiales.
+    password: ['', [Validators.required ,Validators.minLength(6), this.noSoloEspacios()]],
+    nombre: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(25), Validators.pattern('^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$'), this.noSoloEspacios()]], // Permite letras (mayúsculas y minúsculas), tildes y espacios.
+    apellido: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(25), Validators.pattern('^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$'), this.noSoloEspacios()]], // Rechaza números o caracteres especiales.
     edad: [0, [Validators.required, Validators.min(1), Validators.max(100)]]
   });
 
+  noSoloEspacios(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const valor = control.value || '';
+      return valor.trim().length === 0 ? { soloEspacios: true } : null;
+    };
+  }
 
   async realizarRegistro () {
     if (this.registerForm.invalid) {
       this.mensajeDeError.set("Por favor, complete los datos de forma correcta.");
+      this.registerForm.markAllAsTouched();
       return;
     }
 

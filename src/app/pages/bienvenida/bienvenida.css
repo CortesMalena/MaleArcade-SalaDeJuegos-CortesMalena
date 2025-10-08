@@ -53,11 +53,11 @@ p {
 .chat-container-right {
     position: fixed;
     bottom: 8.5rem; 
-    right: 20px;
-    width: 30rem;
+    right: 1rem;
+    width: 20rem;
     max-height: 30rem;
-    background-color: rgba(253, 191, 213, 0.8);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    background-color: #fdbfd5;
+    box-shadow: 0 4px 10px black;
     overflow-y: auto;
     z-index: 1040;
 }

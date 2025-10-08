@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Supabase } from './supabase';
 import { SupabaseClient } from '@supabase/supabase-js';
-import { Ahorcado, EstadisticasAhorcado, EstadisticaMayorOMenor } from '../interfaces/interfaces';
+import { Ahorcado, EstadisticasAhorcado, EstadisticaMayorOMenor, EstadisticaBusquedaDelTesoro, EstadisticaPreguntados } from '../interfaces/interfaces';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class JuegosService {
-  
+
   private supabase: SupabaseClient;
 
   // Inyecto el servicio Supabase
@@ -70,11 +70,14 @@ export class JuegosService {
     .from('estadisticas_ahorcado')
     .insert([
       {
-        usuario_id: estadistica.usuarioId,
-        palabra_id: estadistica.palabraId,
-        letras_seleccionadas: estadistica.letrasSeleccionadas,
+        usuario_id: estadistica.usuario_id,
+        palabra_id: estadistica.palabra_id,
+        nombre_usuario: estadistica.nombre_usuario,
+        mail_usuario: estadistica.mail_usuario,
+        palabra: estadistica.palabra,
+        letras_seleccionadas: estadistica.letras_seleccionadas,
         tiempo: estadistica.tiempo,
-        vidas_restantes: estadistica.vidasRestantes,
+        vidas_restantes: estadistica.vidas_restantes,
         gano: estadistica.gano,
         puntos: estadistica.puntos
       }
@@ -86,15 +89,18 @@ export class JuegosService {
   }
   
   // Obtengo las estadisticas del ahorcado
-  async obtenerEstadisticasAhorcado (usuarioId: string): Promise<any>{
+  async obtenerEstadisticasAhorcado (): Promise<any>{
     const { data, error } = await this.supabase
       .from('estadisticas_ahorcado')
       .select('*')
-      .eq('usuario_id', usuarioId) 
+      .eq('gano', true)
+      .order('puntos', { ascending: false })
+      .order('vidas_restantes', { ascending: false })
+      .order('tiempo', { ascending: true }); 
 
     if (error) throw error;
 
-    return data;
+    return data as EstadisticasAhorcado[];
   }
 
   ///////////////////
@@ -107,7 +113,9 @@ export class JuegosService {
     .from('estadisticas_mayor_o_menor')
     .insert([
       {
-        usuario_id: estadistica.usuario_id,      
+        usuario_id: estadistica.usuario_id,     
+        nombre_usuario: estadistica.nombre_usuario,
+        mail_usuario: estadistica.mail_usuario, 
         puntos: estadistica.puntos,
         racha_actual: estadistica.racha_actual,
         racha_maxima: estadistica.racha_maxima,
@@ -125,11 +133,94 @@ export class JuegosService {
   }
   
   // Obtengo las estadisticas del juego Mayor o menor
-  async obtenerEstadisticasMayorOMenor (usuarioId: string) : Promise<any>{
+  async obtenerEstadisticasMayorOMenor () : Promise<any>{
     const { data, error } = await this.supabase
       .from('estadisticas_mayor_o_menor')
       .select('*')
-      .eq('usuario_id', usuarioId) 
+      .order('puntos', { ascending: false })
+      .order('racha_maxima', { ascending: false})
+      .order('vidas_restantes', { ascending: false })
+      .order('tiempo', { ascending: true });
+
+    if (error) throw error;
+
+    return data;
+  }
+
+  ///////////////////
+  // BUSQUEDA DEL TESORO // 
+  /////////////////// 
+
+  // Guardo los datos de la busqueda del tesoro 
+  async guardarDatosBusquedaDelTesoro (estadistica: EstadisticaBusquedaDelTesoro): Promise<boolean> {
+    const { error } = await this.supabase
+    .from('estadisticas_busqueda_del_tesoro')
+    .insert([
+      {
+        usuario_id: estadistica.usuario_id,     
+        nombre_usuario: estadistica.nombre_usuario,
+        mail_usuario: estadistica.mail_usuario, 
+        puntos: estadistica.puntos,
+        vidas_restantes: estadistica.vidas_restantes,
+        tiempo: estadistica.tiempo,     
+        cantidad_movimientos: estadistica.cantidad_movimientos,
+        gano: estadistica.gano
+      }
+    ]);
+
+    if (error) throw error;
+    
+    return true;
+  }
+
+  // Obtengo las estadisticas del juego Mayor o menor
+  async obtenerEstadisticasBusquedaDelTesoro () : Promise<any>{
+    const { data, error } = await this.supabase
+      .from('estadisticas_busqueda_del_tesoro')
+      .select('*')
+      .eq('gano', true)
+      .order('puntos', { ascending: false })
+      .order('vidas_restantes', { ascending: false })
+      .order('cantidad_movimientos', { ascending: true })
+      .order('tiempo', { ascending: true });
+
+    if (error) throw error;
+
+    return data;
+  }
+
+  ///////////////////
+  // PREGUNTADOS // 
+  /////////////////// 
+
+  // Guardo los datos del preguntados
+  async guardarDatosPreguntados (estadistica: EstadisticaPreguntados): Promise<boolean> {
+    const { error } = await this.supabase
+    .from('estadisticas_preguntados')
+    .insert([
+      {
+        usuario_id: estadistica.usuario_id,     
+        nombre_usuario: estadistica.nombre_usuario,
+        mail_usuario: estadistica.mail_usuario, 
+        puntos: estadistica.puntos,
+        tiempo_promedio: estadistica.tiempo_promedio,     
+        respuestas_correctas: estadistica.respuestas_correctas,
+      }
+    ]);
+
+    if (error) throw error;
+    
+    return true;
+  }
+
+  // Obtengo las estadisticas del preguntados
+  async obtenerEstadisticasPreguntados() : Promise<any>{
+    const { data, error } = await this.supabase
+      .from('estadisticas_preguntados')
+      .select('*')
+      .order('puntos', { ascending: false })
+      .order('respuestas_correctas', { ascending: false })
+      .order('tiempo_promedio', { ascending: true });
 
     if (error) throw error;
 

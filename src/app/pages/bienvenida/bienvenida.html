@@ -4,7 +4,7 @@
 
     <div class="text-white rounded p-3 mb-3 color">
       @if (usuario()) {
-        <p class="mensaje-bienvenida">¡Bienvenid@  {{usuario()!.user_metadata['nombre']}}!👋 </p>
+        <p class="mensaje-bienvenida">¡Bienvenid@  {{usuario()!.user_metadata['nombre'] | capitalize}}!👋 </p>
       } @else {
         <p class="mensaje-bienvenida">¡Hola Invitado! Inicia sesión por favor para disfrutar de nuestros juegos.</p>
       }
@@ -27,7 +27,7 @@
           <div class="card-body">
             <h3 class="card-title">Ahorcado</h3>
             <p class="card-text">Juego de adivinanzas de palabras, donde tendrás que acertar letra por letra.</p>
-            <button class="btn w-100 color" (click)="irAlJuego('ahorcado')">Jugar</button>
+            <button class="btn w-100 color" (click)="irAlJuego('ahorcado')" >Jugar</button>
           </div>
         </div>
       </div>
@@ -78,7 +78,7 @@
       data-bs-target="#chatRightCollapse"
       aria-expanded="false"
       aria-controls="chatRightCollapse"
-      [disabled]="!usuario()">
+      (click)="validarChat($event)">
       <img src="../../../assets/img/chat.png" alt="Chat" class="btn-chat-img">
     </button>
 
@@ -88,7 +88,6 @@
         <app-chat [usuario]="usuario()"></app-chat>
       </div>
     </div>
- 
 
 
   </div>

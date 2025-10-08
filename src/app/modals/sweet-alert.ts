@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-declare const Swal: any; // porque uso CDN 
+declare var Swal: any; // porque uso CDN 
 
 @Injectable({
   providedIn: 'root'

@@ -2,7 +2,7 @@
 <!--Card de mi usuario de gitHub-->
 <div class="card-usuario"> 
     <!--Mi imagen, ubicada a la izquierda -->
-    <p> <img src="{{usuario().avatar_url}}" alt="">
+    <p> <img src="{{usuario().avatar_url}}" alt="" [appHoverScale]="1.1" [duracion]="250" [zIndex]="20" [colorDesignado]="true">
     
      <!--Informacion textual de la derecha -->
     <div class="div-texto">
@@ -12,17 +12,17 @@
 
          <!--Datos extras requeridos -->
         <div class="usuario-informacion">
-            <div class="usuario-data"> 
+            <div class="usuario-data" [appHoverScale]="1.1" [duracion]="250" [zIndex]="20" [colorDesignado]="true"> 
                 <h4>Repositorios:</h4>
                  <p> {{repositorios()}} </p>
             </div>
 
-            <div class="usuario-data"> 
+            <div class="usuario-data" [appHoverScale]="1.1" [duracion]="250" [zIndex]="20" [colorDesignado]="true"> 
                 <h4>Seguidores: </h4>
                 <p>{{usuario().followers}} </p>
             </div>
 
-            <div class="usuario-data"> 
+            <div class="usuario-data" [appHoverScale]="1.1" [duracion]="250" [zIndex]="20" [colorDesignado]="true"> 
                 <h4>Seguidos: </h4>
                 <p>{{usuario().following}} </p>
             </div>

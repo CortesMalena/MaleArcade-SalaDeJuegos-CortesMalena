@@ -1,0 +1,36 @@
+
+<div class="container py-4"> 
+
+<h3 class="text-center mb-4 fw-bold text-danger"> Ver los resultados de: </h3>
+
+<div class="d-flex flex-wrap justify-content-center gap-3 p-4 shadow-sm botones-panel">
+    <button  class="btn btn-danger rounded-pill text-uppercase" (click)="cambiarJuego('ahorcado')">Ahorcado</button>
+    <button class="btn btn-danger rounded-pill text-uppercase" (click)="cambiarJuego('mayorOMenor')">Mayor o menor</button>
+    <button class="btn btn-danger rounded-pill text-uppercase" (click)="cambiarJuego('preguntados')">Preguntados</button>
+    <button  class="btn btn-danger rounded-pill text-uppercase" (click)="cambiarJuego('busquedaDelTesoro')">Búsqueda del tesoro</button>
+</div>
+
+@switch (juego()) {
+@case ('ahorcado') {
+    <app-resultados-ahorcado />
+}
+@case ('mayorOMenor') {
+    <app-resultados-mayor-o-menor />
+}
+@case ('preguntados') {
+    <app-resultados-preguntados />
+}
+@case ('busquedaDelTesoro') {
+    <app-resultados-busqueda-del-tesoro />
+}
+@default {
+
+
+    <div class="alert alert-secondary text-center mt-4 border-0 fw-bold" role="alert">
+    ¡Elige un juego para ver las estadisticas!
+    <img src="../../../assets/img/trofeo.png.png" alt="trofeo" class="w-50">
+    </div>
+
+}
+}
+</div>

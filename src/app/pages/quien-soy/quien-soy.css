@@ -20,8 +20,16 @@ h2 {
     padding-bottom: 2rem;
 }
 
+.card {
+    background-color: #d34a24;
+}
+
 h3 {
     text-shadow: 2px 2px 2px black;
+}
+
+p {
+    color: black;
 }
 
 /*Informacion del juego*/
@@ -32,4 +40,40 @@ h3 {
     align-items: center;
     padding: 4rem;
     background-color: #f9a961;
+}
+
+.container-tutorial {
+  padding: 0 2rem; 
+}
+
+.tutorial-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem; 
+  justify-content: flex-start;
+}
+
+.tutorial-card {
+  flex: 0 0 calc(25% - 1.5rem); /* 4 por fila con gap incluido */
+  padding: 1.5rem;
+  border-radius: 1rem;
+  background: #fff;
+}
+
+.tutorial-card p {
+  flex-grow: 1;
+  overflow: auto;
+}
+
+/* media query*/
+@media (max-width: 992px) {
+  .tutorial-card {
+    flex: 0 0 calc(50% - 1rem);
+  }
+}
+
+@media (max-width: 576px) {
+  .tutorial-card {
+    flex: 0 0 100%;
+  }
 }

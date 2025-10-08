@@ -20,6 +20,10 @@ export class Supabase {
   async login(email: string, password: string): Promise<{ user: User | null; session: Session | null; metadata?:any }> { // session indica la confirmacion del email
 
     const { data, error } = await this.supabase.auth.signInWithPassword({ email, password });
+    
+    if (!data.user?.email_confirmed_at) {
+      throw new Error('Debe confirmar su correo electrónico antes de iniciar sesión.');
+    }
     if (error) {
       throw new Error('Ocurrió un error al iniciar sesión');
     };
@@ -62,6 +66,7 @@ export class Supabase {
 
   // Obtenemos el user o null en caso de que no haya sesión 
   async getUser(): Promise<User | null> {
+    
     const { data } = await this.supabase.auth.getUser();
 
     return data.user; // puede ser null si no hay sesión

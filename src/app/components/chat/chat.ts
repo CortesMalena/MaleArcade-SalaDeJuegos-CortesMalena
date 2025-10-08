@@ -1,14 +1,22 @@
-import { Component, OnInit, signal, input, OnDestroy} from '@angular/core';
+import { Component, OnInit, signal, input, OnDestroy, inject} from '@angular/core';
+
+import { ReactiveFormsModule, FormBuilder, Validators, ValidationErrors, AbstractControl, ValidatorFn} from '@angular/forms';
+
 import { ChatService } from '../../services/chat-service';
 import { chat } from '../../interfaces/interfaces';
+
 import { SweetAlertService } from '../../modals/sweet-alert';
+
 import { User } from '@supabase/supabase-js';
 import { Router } from '@angular/router';
-import { DatePipe } from '@angular/common';
+import { Supabase } from '../../services/supabase';
+
+import { Autofocus } from '../../directives/auto-focus'; 
+import { FechaPersonalizadaPipe } from '../../pipes/fecha-personalizada-pipe';
 
 @Component({
   selector: 'app-chat',
-  imports: [DatePipe],
+  imports: [Autofocus, ReactiveFormsModule, FechaPersonalizadaPipe],
   templateUrl: './chat.html',
   styleUrl: './chat.css'
 })
@@ -19,19 +27,22 @@ export class Chat implements OnInit, OnDestroy {
 
   // signal para almacenar mensajes
   mensajes = signal<chat[]>([]);   
-
-  // signal para el input
-  nuevoMensaje = signal<string>(''); 
-
+ 
   // Funcion que deja de escuchar  
   private unsubscribe?: () => void;
 
-  // inyecto lo requerido 
-  constructor( private chatService: ChatService, private sweetAlert: SweetAlertService, private router: Router) {
+  private fb = inject(FormBuilder); 
 
+  // inyecto lo requerido 
+  constructor( private chatService: ChatService, private sweetAlert: SweetAlertService, private router: Router, private supabase: Supabase) {
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+
+    if (!this.usuario()) {
+      return;
+    }
+
     // Traigo historial
     this.obtenerMensajes();
 
@@ -46,6 +57,16 @@ export class Chat implements OnInit, OnDestroy {
     if (this.unsubscribe) this.unsubscribe();
   }
 
+  chatForm = this.fb.nonNullable.group({
+    texto: ['', [Validators.required, Validators.maxLength(30), this.noSoloEspacios()]]
+  });
+  
+  noSoloEspacios(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const valor = control.value || '';
+      return valor.trim().length === 0 ? { soloEspacios: true } : null;
+    };
+  }
   
   // Logica para enviar un mensaje a la base de datos
   async enviarMensaje() {
@@ -56,21 +77,32 @@ export class Chat implements OnInit, OnDestroy {
       this.router.navigate(['/login']);
       return
     };  
+
+    if (this.chatForm.invalid) {
+      const textoCtrl = this.chatForm.controls.texto;
+
+      if (textoCtrl.hasError('required')) {
+        this.sweetAlert.crearMensajeError("No envíes mensajes vacíos por favor");
+        this.chatForm.reset();
+      } else if (textoCtrl.hasError('soloEspacios')) {
+        this.sweetAlert.crearMensajeError("El mensaje no puede contener solo espacios");
+        this.chatForm.reset();
+      } else if (textoCtrl.hasError('maxlength')) {
+        this.sweetAlert.crearMensajeError("El mensaje no puede superar los 30 caracteres");
+        this.chatForm.reset();
+      }
+      return;
+    }
+
+    const { texto = ""} = this.chatForm.value;
     
     try {
-      
-      const texto = this.nuevoMensaje();
-
-      // verficio que no sea vacio 
-      if (!texto.trim()) {
-        throw new Error("No envies mensajes vacios por favor"); 
-      }; 
 
       // mando el mensje a la base de datos
       await this.chatService.mandarMensaje( usuarioActual!.id, usuarioActual!.user_metadata['nombre'], texto);
 
       // limpiar input
-      this.nuevoMensaje.set('');
+      this.chatForm.reset();
       
     } catch (error: any) {
       // manejo errores 
@@ -87,6 +119,7 @@ export class Chat implements OnInit, OnDestroy {
       // obtengo todos los mensajes
       const historial = await this.chatService.obtenerMensajes();
       this.mensajes.set(historial);
+
     }  catch (error: any) {
       this.sweetAlert.crearMensajeError(`Ocurrio un error al obtener los mensajes`);
       console.error(`${error.message}`)

@@ -10,30 +10,45 @@
           <div class="mb-3">
             <label for="nombre" class="form-label">Nombre</label>
             <input type="text" id="nombre" name="nombre" formControlName="nombre" class="form-control" placeholder="Escribe tu nombre" autocomplete="off" required>
+            @if (registerForm.controls['nombre'].invalid && registerForm.controls['nombre'].touched) {
+              <small class="fw-bold">El nombre debe tener al menos 4 caracteres y solo contener letras.</small>
+            }
           </div>
 
           <!-- Apellido -->
           <div class="mb-3">
             <label for="apellido" class="form-label">Apellido</label>
             <input type="text" id="apellido" formControlName="apellido" name="apellido"  class="form-control" placeholder="Escribe tu apellido" autocomplete="off" required>
+            @if (registerForm.controls['apellido'].invalid && registerForm.controls['apellido'].touched) {
+              <small class="fw-bold">El apellido debe tener al menos 4 caracteres y solo contener letras.</small>
+            }
           </div>
 
           <!-- Email -->
           <div class="mb-3">
             <label for="email" class="form-label">Correo electrónico</label>
             <input type="email" formControlName="email" id="email" name="email" class="form-control" placeholder="ejemplo@gmail.com" autocomplete="off" required>
+             @if (registerForm.controls['email'].invalid && registerForm.controls['email'].touched) {
+              <small class="fw-bold">El email no es válido. Debe tener el formato: ejemplo@gmail.com.</small>
+            }
           </div>
 
           <!-- Contraseña -->
           <div class="mb-3">
             <label for="password" class="form-label">Contraseña</label>
             <input type="password" id="password" name="password" formControlName="password" class="form-control" placeholder="••••••••" required>
+            @if (registerForm.controls['password'].invalid && registerForm.controls['password'].touched) {
+              <small class="fw-bold">La contraseña debe tener al menos 6 caracteres no vacios</small>
+            }
           </div>
 
           <!-- Edad -->
           <div class="mb-3">
             <label for="edad" class="form-label">Edad</label>
             <input type="number" id="edad" name="edad" formControlName="edad" class="form-control" autocomplete="off" required>
+             @if (registerForm.controls['edad'].invalid && registerForm.controls['edad'].touched) {
+              <small class="fw-bold">Ingrese una edad valida hasta los 100 años</small>
+            }
           </div>
 
           <!-- Botón -->

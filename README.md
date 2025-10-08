@@ -67,8 +67,8 @@ MaleArcade-SalaDeJuegos-CortesMalena/
 │   │   │   ├── nav/
 │   │   │   ├── chat/
 │   │   │   ├── footer/
-│   │   │   ├── ahorcado/
-│   │   │   ├── buscar-el-tesoro/
+│   │   │   ├── juegos/ -> todos aquellos componentes dedicados a los juegos
+│   │   │   ├── resultados/ -> todos aquellso componentes dedicados a los resultados
 │   │   │   ├── mayor-o-menor/
 │   │   │   ├── preguntados/
 │   │   │   └── usuario-card/
@@ -78,19 +78,26 @@ MaleArcade-SalaDeJuegos-CortesMalena/
 │   │   │   ├── quien-soy/
 │   │   │   └── registro/
 │   │   ├── interfaces/
+│   │   ├── directives/
 │   │   ├── guards/
 │   │   ├── modals/
+│   │   ├── pipes/
 │   │   ├── services/
 │   │   │   ├── api.ts
 │   │   │   ├── chat-service.ts
+│   │   │   ├── preguntados-service.ts
+│   │   │   ├── resultados-service.ts
 │   │   │   ├── juegos-service.ts
 │   │   │   └── supabase.ts
 │   │   ├── app.ts
 │   │   ├── app.routes.ts
 │   │   └── app.config.ts
 │   ├── assets/
-│   │   ├── cartas/
+│   │   ├── ahorcado/ -> muñeco
+│   │   ├── cartas/ -> cartas
+│   │   ├── corazones/ -> vidas
 │   │   ├── icons/
+│   │   ├── preguntados/ -> js
 │   │   └── img/
 │   ├── environments/
 │   │   └── environments.ts
@@ -119,7 +126,7 @@ Aquí se podran visualizar los spints realizados:
 - Implementar un favicon propio. :heavy_check_mark:
 - Agregar estilado general, inspirado en lo retro :heavy_check_mark:
 
-## Sprint #2 v2.0.0 :round_pushpin:
+## Sprint #2 v2.0.0 
 ### Funcionalidad - Componente Bienvenida / Home:
 - Tiene que ser el componente principal, desde este se podrán acceder a los diferentes
 juegos y listados. :heavy_check_mark:
@@ -144,23 +151,43 @@ se guarda. :heavy_check_mark:
 sesión con ese usuario y navegar automáticamente al Home. :heavy_check_mark:
 - Emitir mensaje si el usuario ya se encuentra registrado. :heavy_check_mark:
 
-##  Sprint #3 :round_pushpin:
-##  Juego: Ahorcado. :heavy_check_mark:
+##  Sprint #3 
+### Juego: Ahorcado. :heavy_check_mark:
 ○ Deben mostrarse botones que simbolicen a todas las letras del abecedario. La entrada de
 datos es a través de botones, NO el teclado.
 ○ Al finalizar la partida, guardar en la base de datos: el usuario que jugó, junto con el
 tiempo de finalización, cantidad de letras selecionadas, etc.
-##  Juego: Mayor o Mentor. :heavy_check_mark:
+### Juego: Mayor o Mentor. :heavy_check_mark:
 ○ Se muestra una de una baraja de naipes. Se debe adivinar si la próxima carta va a ser un
 número mayor o un número menor.
 ○ Al finalizar la partida, guardar en la base de datos: el usuario que jugó, cantidad de cartas
 acertadas, etc.
-##  Sala de chat: :heavy_check_mark:
-○ Se debe mostrar el chat global para los usuarios logueados.
-○ Se debe permitir enviar un mensaje a la sala de chat.
-○ Al enviar un mensaje, este se guarda en la base de datos con el usuario que lo envió, el
+### Sala de chat: :heavy_check_mark:
+-  Se debe mostrar el chat global para los usuarios logueados.
+- Se debe permitir enviar un mensaje a la sala de chat.
+- Al enviar un mensaje, este se guarda en la base de datos con el usuario que lo envió, el
 mensaje y la fecha de envío.
-○ Al guardar el mensaje, se debe mostrar en todos los clientes el nuevo mensaje
+- Al guardar el mensaje, se debe mostrar en todos los clientes el nuevo mensaje
 automáticamente (se debe estar suscrito al servicio de base de datos en tiempo real).
-○ Se debe mostrar quién envía cada mensaje y a qué hora. El mensaje propio debe
+- Se debe mostrar quién envía cada mensaje y a qué hora. El mensaje propio debe
 diferenciarse del resto.
+
+##  Sprint #4 :round_pushpin:
+
+### Juego: Preguntados. :heavy_check_mark:
+- Debe obtener los datos de una api.
+- Puede ser una api de preguntas o una api con información a la que luego se le agregue la
+funcionalidad de preguntados. Puede estar en inglés.
+- Las opciones de elección deben ser botones.
+- Al finalizar la partida, guardar en la base de datos: el usuario que jugó, cantidad de
+preguntas acertadas, etc.
+### Crear el juego propio: :heavy_check_mark:
+- Agregar la descripción y reglas del mismo en la página quién soy.
+- Al finalizar la partida, guardar en la base de datos: el usuario que jugó y algún dato que
+mida su desempeño (puntaje, tiempo en finalizar, etc).
+### Listados de resultados: :heavy_check_mark:
+- Crear la page Resultados.
+- Crear 4 tablas que detallen los resultados de los 4 juegos, mostrando el desempeño de
+cada jugador ordenado de mejor desempeño al peor
+
+### Correcciones de los anteriores sprints :heavy_check_mark:

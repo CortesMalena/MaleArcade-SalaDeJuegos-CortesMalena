@@ -1,10 +1,16 @@
 import { Component, OnInit, ChangeDetectorRef, input } from '@angular/core';
-import { Api, Usuario } from '../../services/api';
+
+// Intefaces y componentes 
+import { Api } from '../../services/api';
+import { UsuarioGitHub } from '../../interfaces/interfaces';
 import { UsuarioCard } from '../../components/usuario-card/usuario-card';
+
+// Directivas 
+import { HoverScale } from '../../directives/hover-scale';
 
 @Component({
   selector: 'app-quien-soy',
-  imports: [UsuarioCard],
+  imports: [UsuarioCard, HoverScale],
   templateUrl: './quien-soy.html',
   styleUrl: './quien-soy.css'
 })
@@ -12,7 +18,7 @@ import { UsuarioCard } from '../../components/usuario-card/usuario-card';
 export class QuienSoy implements OnInit {
 
   // Establezco variables 
-  usuario: Usuario | null = null;
+  usuario: UsuarioGitHub | null = null;
   repositorios: number= 0;
   loading: boolean = true;
   error="";

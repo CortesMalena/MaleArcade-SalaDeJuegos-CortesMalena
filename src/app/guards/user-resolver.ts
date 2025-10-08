@@ -8,8 +8,8 @@ import { Supabase } from '../services/supabase';
 export class UserResolver {
   private supabaseService = inject(Supabase);
 
-  resolve() {
-    return this.supabaseService.getUser();
+  async resolve() {
+    return await this.supabaseService.getUser();
   }
 
 }

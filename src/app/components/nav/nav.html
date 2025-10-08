@@ -22,12 +22,15 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="/quienSoy">Quién Soy</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/resultados">Resultados Juegos</a>
+        </li>
       </ul>
 
       @if (usuario()) {
          <!-- Boton a la derecha (Cierre de sesión) -->
         <div class="d-flex justify-content-between navbar-btn">
-          <span> ¡Hola {{usuario()!.user_metadata['nombre']}}! </span>
+          <span> ¡Hola {{usuario()!.user_metadata['nombre'] | capitalize }}! </span>
           <button class="btn btn-primary btn-color-2" (click)="cerrarSesion()">Cerrar Sesión</button>
         </div>
       } @else {

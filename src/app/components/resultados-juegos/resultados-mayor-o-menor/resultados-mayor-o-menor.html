@@ -1,0 +1,39 @@
+<h3 class="alert alert-secondary text-center mt-4 border-0 fw-bold">Ranking Mayor o Menor</h3>
+
+<div class="container">
+<table class="table table-bordered table-hover table-retro">
+  <thead class="header-retro">
+    <tr>
+      <th>Nro Top</th>
+      <th>Nombre</th>
+      <th>Correo</th>
+      <th>Cartas acertadas/mostradas</th>
+      <th>Racha máxima/ultima</th>
+      <th>Tiempo (segundos)</th>
+      <th>Vidas restantes</th>
+      <th>Puntos</th>
+      <th>Fecha</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    @if (cargando()) {
+      <p> Cargando estadisticas...</p>
+    } @else {
+      @for ( r of ranking() ; track $index ) {
+        <tr [appHoverScale]="1.1" [duracion]="250" [zIndex]="20" [colorDesignado]="false">
+          <td>{{ $index + 1}}</td>
+          <td>{{ r.nombre_usuario }}</td>
+          <td>{{ r.mail_usuario }}</td>
+          <td>{{ r.cartas_acertadas}} / {{r.cartas_totales}}</td>
+          <td>{{ r.racha_maxima }} / {{r.racha_actual}}</td>
+          <td>{{ r.tiempo }}s</td>
+          <td>{{ r.vidas_restantes }}</td>
+          <td>{{ r.puntos }}</td>
+          <td> {{ r.created_at | date:'dd/MM/yy HH:mm' }}</td>
+        </tr>
+      }
+    }
+  </tbody>
+</table>
+</div>

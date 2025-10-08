@@ -1,0 +1,99 @@
+
+<div class="juego-container">
+
+    <h2>Juego Mayor o Menor</h2>
+
+    <!--Contenedor del contenido de las cartas -->
+   <div class="container text-center mt-4">
+
+        <div class="mb-3">
+            <label class="form-label fw-bold text-warning">Vidas: {{ vidas() }}</label>
+            <div class="progress barra">
+                <!--[style.width.%]  la propiedad width en porcentaje.-->
+                <!--Aria es para establecer valores actuales minimos y maximos-->
+                <div class="progress-bar bg-gradient" role="progressbar"
+                    [style.width.%]="(vidas() / 6) * 100"
+                    aria-valuenow="{{ vidas() }}" aria-valuemin="0" aria-valuemax="6">
+                </div>
+            </div>
+        </div>
+
+        <!-- Tiempo -->
+        <div class="mb-3">
+            <label class="form-label fw-bold text-warning">Tiempo: {{ tiempo() }} / {{ limite() }} seg</label>
+            <div class="progress barra">
+                <div class="progress-bar bg-gradient" role="progressbar"
+                    [style.width.%]="(tiempo() / limite()) * 100"
+                    aria-valuenow="{{ tiempo() }}" aria-valuemin="0" aria-valuemax="{{ limite() }}">
+                </div>
+            </div>
+        </div>
+
+        <!-- Puntos -->
+        <div class="mb-2">
+            <h5 class="text">Puntos: {{ puntos() }}</h5>
+        </div>
+
+        <!-- Racha -->
+        <div class="mb-2">
+            <h5 class="text">Racha actual: {{ racha() }}</h5>
+        </div>
+
+        <!-- Racha máxima -->
+        <div class="mb-2">
+            <h5 class="text">Racha máxima: {{ rachaMaxima }}</h5>
+        </div>
+
+        <!-- Cartas restantes -->
+        <div class="mb-2">
+            <h5 class="text">Cartas restantes: {{ cartas.length }}</h5>
+        </div>
+
+        </div>
+
+
+    </div>
+
+    <!--Mensaje de carga-->
+    @if ( loading() ) {
+        <div>
+            <p>Cargando ...</p>
+        </div>
+    }
+
+    <!-- Carta actual -->
+   @if( cartaActual().imagen) {
+        <div class="carta-actual text-center">
+            <img [src]="cartaActual().imagen" [alt]="cartaActual().nombre" class="carta-img">
+            <p class="nombre-carta">{{ cartaActual().nombre }} de {{ cartaActual().palo }}</p>
+        </div>
+    }
+
+    <!-- Botones de predicción -->
+    <div class="botones-prediccion text-center">
+        <button  class="btn btn-danger rounded-pill" (click)="generarSiguienteCarta('menor')" [disabled]="vidas() === 0 || cartas.length === 0">Menor</button>
+        <button class="btn btn-danger rounded-pill" (click)="generarSiguienteCarta('mayor')" [disabled]="vidas() === 0 || cartas.length === 0">Mayor</button>
+    </div>
+
+
+    <!-- Cartas acertadas -->
+        <div class="cartas-adivinadas text-center">
+            @if (cartasAdivinadas.length > 0) {
+            <h3>Cartas acertadas:</h3>
+            <div class="cartas-lista">
+                @for (carta of cartasAdivinadas; track carta) {
+                    <div class="carta-acertada">
+                        <img [src]="carta.imagen" [alt]="carta.nombre" class="carta-img-pequena">
+                        <p>{{ carta.nombre }} de {{ carta.palo }}</p>
+                    </div>
+                }
+            </div>
+            }
+        </div>
+
+  
+ 
+
+
+
+

@@ -22,7 +22,80 @@
 <!--Contenedor de la explicación del juego-->
 <div class="container-juego">
     <h2>Juego Propio <img src="assets/icons/joystick.png" alt=""></h2>
-    <h3>Busqueda del tesoro</h3>
-    <p>El juego se basa en la busqueda de un tesoro, el usuario podrá moverse de izquierda a derecha y de arriba a abajo para poder encontrarlo y asi ganar el juego.
-    Durante el camino se presentarán dificultades que se tendrán que evitar (bombas), de lo contrario el usuario perdera al agotar sus 3 vidas.</p>
+
+    <div class="container-tutorial">
+        <div class="tutorial-row">
+            
+            <div class="tutorial-card" [appHoverScale]="1.1" [duracion]="250" [zIndex]="20" [colorDesignado]="false">
+                <h3>Paso 1</h3>
+                <h4>Contexto</h4>
+                <p>
+                    ¡El juego es una Búsqueda del Tesoro! Tu objetivo es <strong>encontrar el tesoro</strong> antes de quedarte sin vidas. Ten cuidado con las bombas ocultas.
+                </p>
+            </div>
+
+            <div class="tutorial-card" [appHoverScale]="1.1" [duracion]="250" [zIndex]="20" [colorDesignado]="false">
+                <h3>Paso 2</h3>
+                <h4>Cómo jugar</h4>
+                <p>
+                    Para jugarlo debes ir a la <strong>sala de juegos</strong> (bienvenida) y apretar el botón "Jugar" de "Buscar el tesoro". Apareceras en el mapa y empezara el juego
+                </p>
+            </div>
+
+            <div class="tutorial-card" [appHoverScale]="1.1" [duracion]="250" [zIndex]="20" [colorDesignado]="false">
+                <h3>Paso 3</h3>
+                <h4>Información superior</h4>
+                <p>
+                    Arriba encontrarás <strong>toda la información requerida</strong> como pistas para encontrar el tesoro, bombas, mensajes de aviso, vidas a la izquierda en forma de corazones y puntuación actualizada en tiempo real.
+                </p>
+            </div>
+
+            <div class="tutorial-card" [appHoverScale]="1.1" [duracion]="250" [zIndex]="20" [colorDesignado]="false">
+                <h3>Paso 4</h3>
+                <h4>Información inferior</h4>
+                <p>
+                    Abajo encontrarás <strong>flechas</strong> que te ayudarán a moverte por el mapa. Solo podras hacerlo de izquierda a derecha y de abajo para arriba
+                </p>
+            </div>
+
+            <div class="tutorial-card" [appHoverScale]="1.1" [duracion]="250" [zIndex]="20" [colorDesignado]="false">
+                <h3>Paso 5</h3>
+                <h4>Puntuación</h4>
+                <p>
+                    Tus movimientos cuentan: <strong>cada paso que das</strong> de forma eficiente te beneficia. Empezarás con <strong>20 puntos</strong> que se van descontando de a 1 por cada paso. ¡Tranquilo! El tesoro se puede encontrar en menos de 20 pasos, aunque también es un juego de suerte.
+                </p>
+            </div>
+
+            <div class="tutorial-card" [appHoverScale]="1.1" [duracion]="250" [zIndex]="20" [colorDesignado]="false">
+                <h3>Paso 6</h3>
+                <h4>Para ganar</h4>
+                <p>
+                    Podés ganar únicamente encontrando el tesoro, que te sumará <strong>50 puntos adicionales</strong>.
+                </p>
+            </div>
+
+            <div class="tutorial-card" [appHoverScale]="1.1" [duracion]="250" [zIndex]="20" [colorDesignado]="false">
+                <h3>Paso 7</h3>
+                <h4>Tiempo</h4>
+                <p>
+                    El juego registra tu <strong>tiempo</strong>, así que mientras más rápido encuentres el tesoro, mejor será tu puntuación final respecto a los demás jugadores.
+                    Además si tardas demasiado el juego finalizara automaticamente.
+                </p>
+            </div>
+
+            <div class="tutorial-card" [appHoverScale]="1.1" [duracion]="250" [zIndex]="20" [colorDesignado]="false">
+                <h3>Paso 8</h3>
+                <h4>Consejo</h4>
+                <p>
+                    Observa las flechas, <strong> prioriza planificar tu ruta </strong> para evitar bombas y acumular la mayor cantidad de puntos.
+                </p>
+            </div>
+
+        </div>
+    </div>
 </div>
+
+
+
+
+

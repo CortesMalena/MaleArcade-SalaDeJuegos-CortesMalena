@@ -1,13 +1,15 @@
 import { Component, OnInit, signal} from '@angular/core';
 import { RouterLink, Router } from '@angular/router';
 
+import { CapitalizePipe } from '../../pipes/capitalize-pipe';
+
 // Relacionado a los datos de los usuarios
 import { User } from '@supabase/supabase-js'
 import { Supabase } from '../../services/supabase';
 
 @Component({
   selector: 'app-nav',
-  imports: [RouterLink],
+  imports: [RouterLink, CapitalizePipe],
   templateUrl: './nav.html',
   styleUrl: './nav.css'
 })

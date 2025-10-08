@@ -1,0 +1,40 @@
+<div class="container py-5 my-5 min-vh-100">
+  
+  <!-- Encabezado: tiempo y puntaje -->
+    <div class="d-flex justify-content-between align-items-center mb-5">
+        <p class="h5 m-0">Tiempo: <span class="badge bg-danger text-white">{{ tiempo() }} / {{ limite }} seg</span></p>
+        <p class="h5 m-0">Puntos: <span class="badge bg-success text-white">{{ puntos() }}</span></p>
+    </div>
+
+  <!-- Card de pregunta -->
+
+  <div class="card p-5 shadow-lg border-0 rounded-3"> 
+    @if ( !cargando() && preguntaActual) {
+    
+        <div class="text-center mb-3">
+          <span class="badge bg-secondary text-uppercase fw-normal"> Categoria: {{ preguntaActual.categoria}}</span>
+        </div>
+
+        <h2 class="card-title mb-5 text-center display-6 fw-bold text-dark">
+          {{ preguntaActual.pregunta }}
+        </h2>
+
+        <!-- Opciones -->
+        <div class="d-grid gap-3">
+
+            @for ( opcion of preguntaActual.opciones ; track opcion.texto) {
+              <button (click)="responderOpcion(opcion)" class="btn btn-outline-danger btn-lg fw-semibold py-3 text-start rounded-pill"> 
+                {{ opcion.texto }} 
+              </button>
+            }
+    
+        </div>
+
+    } 
+        
+    @if (cargando()){
+      <p class="text-center text-muted">Cargando preguntas...</p>
+    }
+  </div>
+
+</div>

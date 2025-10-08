@@ -24,11 +24,6 @@ h3 {
     text-shadow: 2px 2px 2px #000000 ;
 }
 
-/*animacion de hover en los demás datos*/
-.usuario-data:hover {
-   transform: translateY(-10px);
-    box-shadow: 0 10px 20px rgba(255, 0, 0, 0.4); /* efecto neón */
-}
 
 /*div contenedor que contiene los demás datos*/
 .usuario-informacion {

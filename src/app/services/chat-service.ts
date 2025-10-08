@@ -23,11 +23,12 @@ export class ChatService {
     const { data, error } = await this.supabase
       .from('chat')
       .select('*')
-      .order('created_at', { ascending: true });
+      .order('created_at', { ascending: false })
+      .limit(10)
 
     if (error) throw error;
 
-    return data as chat[];
+    return data.reverse() as chat[];
   }
 
 

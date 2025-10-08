@@ -1,0 +1,71 @@
+<div class="game-container position-relative">
+
+    <div class="info-juego">
+        <h2>Busqueda del Tesoro</h2>
+        <div class="d-flex flex-wrap justify-content-center gap-3 mb-2">
+        
+        <span class="badge text-bg-danger fs-6 fw-bold border border-danger rounded-pill">
+            Tiempo: {{tiempo()}}
+        </span>
+        
+        <span class="badge text-bg-success fs-6 fw-bold border border-success rounded-pill">
+            Vidas: {{vidas()}}
+        </span>
+        
+        <span class="badge text-bg-info text-dark fs-6 fw-bold border border-info rounded-pill">
+            Movimientos: {{ cantidadMovimientos}}
+        </span>
+        
+        <span class="badge text-bg-warning text-dark fs-6 fw-bold border border-warning rounded-pill">
+            Puntaje: {{puntos()}}
+        </span>
+        
+    </div>
+    
+    <div class="text-center mt-2">
+        
+        @if (mensaje()) {
+            <p class="text-muted small m-0">{{ mensaje() }}</p>
+        }
+        
+        @if (mensajeTesoro()) {
+            <p class="text-success fw-semibold small m-0">🎉 {{mensajeTesoro()}}</p>
+        }
+        
+        @if (mensajeBomba()) {
+            <span class="text-danger fw-bold small m-0 d-block  p-1 rounded">
+                ⚠️ {{mensajeBomba()}}
+            </span>
+        }
+        
+    </div>
+    </div>
+
+    <div class="vidas-corazones position-absolute top-0 start-0 p-2">
+        @if (vidas() === 3) {
+            <img class="img-corazon" src="../../../../assets/corazones/3-corazones.png" alt="">
+        } @else if (vidas() === 2) {
+            <img class="img-corazon" src="../../../../assets/corazones/2-corazones.png" alt="">
+        } @else { 
+            <img  class="img-corazon"src="../../../../assets/corazones/1-corazon.png" alt="">
+        }
+    </div>
+
+    <div class="tablero">
+        @for (fila of [].constructor(filas); track i; let i = $index) {
+            <div class="fila">
+                @for (col of [].constructor(columnas); track j; let j = $index) {
+                    <div class="celda" [class.jugador]="jugadorFila === i && jugadorCol === j"></div>
+                }
+            </div>
+        }
+    </div>
+
+    <div class="controles">
+        <button (click)="mover('arriba')"><img src="../../../assets/icons/flecha-arriba.png" alt=""></button><br>
+        <button (click)="mover('izquierda')"><img src="../../../assets/icons/flecha-izquierda.png" alt=""></button>
+        <button (click)="mover('abajo')"><img src="../../../assets/icons/flecha-abajo.png" alt=""></button>
+        <button (click)="mover('derecha')"><img src="../../../assets/icons/flecha-derecha.png" alt=""></button>
+    </div>
+
+</div>
