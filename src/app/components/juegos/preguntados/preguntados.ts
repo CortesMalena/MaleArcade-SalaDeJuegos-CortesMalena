@@ -145,6 +145,8 @@ export class Preguntados implements OnInit, OnDestroy {
     const sumaTiempos = this.tiemposRespuestasCorrectas.reduce((acc, t) => acc + t, 0);
     const promedio = this.tiemposRespuestasCorrectas.length > 0 ? sumaTiempos / this.tiemposRespuestasCorrectas.length : 0;
 
+    const textoCorrecta = this.opcionCorrectaNoElegida?.texto ? this.opcionCorrectaNoElegida.texto.toLocaleUpperCase() : 'No hubo opción incorrecta por tiempo';
+
     try {
       // Obtengo la informacion del usuario
       const usuarioData = await this.supabase.getUser(); 
@@ -161,7 +163,7 @@ export class Preguntados implements OnInit, OnDestroy {
     
         // Guardo los datos 
         if (await this.juegosService.guardarDatosPreguntados(this.estadistica)) {
-          this.sweetAlert.crearMensajeJuego(`¡Termino! Acertaste ${this.cantidadRespuestasCorrectas} preguntas y obtuviste ${this.puntos()} puntos.`, ` La respuesta era: ${this.opcionCorrectaNoElegida!.texto.toLocaleUpperCase()}. ¡Gracias por jugar! sus datos se encuentran guardados`);
+          this.sweetAlert.crearMensajeJuego(`¡Termino! Acertaste ${this.cantidadRespuestasCorrectas} preguntas y obtuviste ${this.puntos()} puntos.`, ` La respuesta era: ${textoCorrecta}. ¡Gracias por jugar! sus datos se encuentran guardados`);
           this.router.navigate(['/']);
         }
       }
